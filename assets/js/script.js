@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- Preload & Initial Animation ---
+    window.addEventListener('load', () => {
+        document.body.classList.add('is-loaded');
+    });
+
     // --- Sticky Header on Scroll ---
     const header = document.getElementById('site-header');
 
