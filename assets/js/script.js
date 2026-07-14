@@ -1,12 +1,20 @@
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
+    'use strict';
 
     // --- Preload & Initial Animation ---
     window.addEventListener('load', () => {
         document.body.classList.add('is-loaded');
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => {
+                preloader.remove();
+            }, 800); // Wait for CSS transition (0.8s) before removing from DOM
+        }
     });
 
     // --- Sticky Header on Scroll ---
     const header = document.getElementById('site-header');
+    let isScrolling = false;
 
     const handleScroll = () => {
         if (window.scrollY > 50) {
@@ -14,45 +22,39 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             header.classList.remove('scrolled');
         }
+        isScrolling = false;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    // Run once on load to catch initial state
-    handleScroll();
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(handleScroll);
+            isScrolling = true;
+        }
+    }, { passive: true });
+
+    handleScroll(); // Initial check
 
     // --- Mobile Navigation Toggle ---
     const menuToggle = document.querySelector('.mobile-menu-toggle');
     const mainNav = document.getElementById('main-nav');
 
     if (menuToggle && mainNav) {
-        menuToggle.addEventListener('click', () => {
+        const toggleMenu = () => {
             const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
             menuToggle.setAttribute('aria-expanded', !isExpanded);
             mainNav.classList.toggle('is-open');
+            menuToggle.classList.toggle('is-active');
+        };
 
-            // Transform hamburger icon (optional refinement)
-            if (!isExpanded) {
-                // Open state
-                menuToggle.querySelector('.hamburger').style.backgroundColor = 'transparent';
-                menuToggle.querySelector('.hamburger').style.setProperty('--pseudo-transform-before', 'rotate(45deg) translate(5px, 5px)');
-                menuToggle.querySelector('.hamburger').style.setProperty('--pseudo-transform-after', 'rotate(-45deg) translate(4px, -4px)');
-                // We'd need CSS support for these pseudo vars,
-                // but a simpler toggle class approach is better:
-                menuToggle.classList.add('is-active');
-            } else {
-                menuToggle.querySelector('.hamburger').style.backgroundColor = '';
-                menuToggle.classList.remove('is-active');
-            }
-        });
+        menuToggle.addEventListener('click', toggleMenu);
 
         // Close menu when clicking a link
         const navLinks = mainNav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
-                mainNav.classList.remove('is-open');
-                menuToggle.setAttribute('aria-expanded', 'false');
-                menuToggle.classList.remove('is-active');
-                menuToggle.querySelector('.hamburger').style.backgroundColor = '';
+                if (mainNav.classList.contains('is-open')) {
+                    toggleMenu();
+                }
             });
         });
     }
@@ -67,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetElement) {
                 e.preventDefault();
                 // Account for fixed header height
-                const headerHeight = header.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+                const headerHeight = header ? header.offsetHeight : 0;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - headerHeight;
 
                 window.scrollTo({
                     top: targetPosition,
@@ -78,27 +80,81 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+})();
+
+(() => {
+    'use strict';
+
     // --- Intersection Observer for Scroll Animations ---
-    const fadeUpElements = document.querySelectorAll('.fade-up');
+    const animationElements = document.querySelectorAll('.fade-up, .stagger-fade, .stagger-h1, .fade-in-section');
 
-    const observerOptions = {
-        root: null, // viewport
-        rootMargin: '0px 0px -10% 0px', // trigger slightly before it comes into view
-        threshold: 0.1 // 10% of element must be visible
-    };
+    if (animationElements.length > 0) {
+        const animationObserverOptions = {
+            root: null,
+            rootMargin: '0px 0px -10% 0px',
+            threshold: 0.1
+        };
 
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                // Stop observing once animated
-                observer.unobserve(entry.target);
+        const animationObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, animationObserverOptions);
+
+        animationElements.forEach(el => {
+            animationObserver.observe(el);
+        });
+    }
+
+    // --- Active Navigation Highlighting ---
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+    if (sections.length > 0 && navLinks.length > 0) {
+        const navObserverOptions = {
+            root: null,
+            rootMargin: '-50% 0px -50% 0px', // Trigger when section is in the middle of viewport
+            threshold: 0
+        };
+
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === `#${id}`) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, navObserverOptions);
+
+        sections.forEach(section => {
+            navObserver.observe(section);
+        });
+    }
+
+    // --- Dark Mode Toggle ---
+    const themeToggleBtn = document.getElementById('theme-toggle');
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            document.documentElement.setAttribute('data-theme', newTheme);
+            try {
+                localStorage.setItem('theme', newTheme);
+            } catch (e) {
+                console.warn('localStorage not available', e);
             }
         });
-    }, observerOptions);
+    }
 
-    fadeUpElements.forEach(el => {
-        fadeObserver.observe(el);
-    });
-
-});
+})();
