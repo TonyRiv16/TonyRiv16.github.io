@@ -1,473 +1,300 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Tony Rivera</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>Tony Rivera | Writer</title>
 
-:root{
+    <meta name="description"
+        content="Official website of Tony Rivera. Writer, screenwriter, and filmmaker.">
 
-    --bg:#fafafa;
-    --surface:#ffffff;
-    --text:#171717;
-    --muted:#6e6e73;
-    --border:#e5e5e5;
-    --accent:#111111;
+    <meta name="author" content="Tony Rivera">
 
-    --content:1180px;
-
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-
-    background:var(--bg);
-    color:var(--text);
-
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Segoe UI",
-        Helvetica,
-        Arial,
-        sans-serif;
-
-    line-height:1.75;
-    -webkit-font-smoothing:antialiased;
-
-}
-
-a{
-
-    color:inherit;
-    text-decoration:none;
-
-}
-
-.container{
-
-    width:min(92%,var(--content));
-    margin:auto;
-
-}
-
-/* ----------------------------- */
-
-header{
-
-    position:fixed;
-    inset:0 0 auto 0;
-
-    height:72px;
-
-    background:rgba(250,250,250,.92);
-
-    backdrop-filter:blur(14px);
-
-    border-bottom:1px solid var(--border);
-
-    z-index:100;
-
-}
-
-header .container{
-
-    height:100%;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-}
-
-.logo{
-
-    font-weight:600;
-
-    letter-spacing:.12em;
-
-    text-transform:uppercase;
-
-    font-size:.9rem;
-
-}
-
-nav{
-
-    display:flex;
-    gap:2rem;
-
-}
-
-nav a{
-
-    color:var(--muted);
-
-    transition:.25s;
-
-}
-
-nav a:hover{
-
-    color:var(--text);
-
-}
-
-/* ----------------------------- */
-
-.hero{
-
-    min-height:100vh;
-
-    display:flex;
-
-    align-items:center;
-
-}
-
-.hero-inner{
-
-    max-width:760px;
-
-}
-
-.eyebrow{
-
-    color:var(--muted);
-
-    text-transform:uppercase;
-
-    letter-spacing:.22em;
-
-    font-size:.75rem;
-
-    margin-bottom:2rem;
-
-}
-
-h1{
-
-    font-size:clamp(3rem,8vw,6.5rem);
-
-    line-height:.95;
-
-    font-weight:650;
-
-    letter-spacing:-.05em;
-
-    margin-bottom:2rem;
-
-}
-
-.lead{
-
-    font-size:1.35rem;
-
-    color:var(--muted);
-
-    max-width:42rem;
-
-}
-
-.cta{
-
-    display:flex;
-
-    gap:2.5rem;
-
-    margin-top:4rem;
-
-}
-
-.cta a{
-
-    font-weight:600;
-
-    position:relative;
-
-}
-
-.cta a::after{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-    bottom:-6px;
-
-    width:100%;
-
-    height:1px;
-
-    background:#111;
-
-    transform:scaleX(0);
-
-    transform-origin:left;
-
-    transition:.3s;
-
-}
-
-.cta a:hover::after{
-
-    transform:scaleX(1);
-
-}
-
-/* ----------------------------- */
-
-section{
-
-    padding:7rem 0;
-
-}
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(12,1fr);
-
-    gap:3rem;
-
-}
-
-.label{
-
-    grid-column:span 3;
-
-    color:var(--muted);
-
-    text-transform:uppercase;
-
-    letter-spacing:.16em;
-
-    font-size:.8rem;
-
-}
-
-.content{
-
-    grid-column:span 9;
-
-}
-
-.content h2{
-
-    font-size:2.3rem;
-
-    margin-bottom:1rem;
-
-    font-weight:650;
-
-    letter-spacing:-.03em;
-
-}
-
-.content p{
-
-    max-width:42rem;
-
-    color:var(--muted);
-
-}
-
-/* ----------------------------- */
-
-footer{
-
-    border-top:1px solid var(--border);
-
-    padding:2rem 0;
-
-    color:var(--muted);
-
-    font-size:.9rem;
-
-}
-
-@media(max-width:850px){
-
-.grid{
-
-    grid-template-columns:1fr;
-
-}
-
-.label,
-.content{
-
-    grid-column:auto;
-
-}
-
-nav{
-
-    gap:1.25rem;
-
-    font-size:.9rem;
-
-}
-
-.hero{
-
-    padding-top:4rem;
-
-}
-
-}
-
-</style>
+    <link rel="icon" href="images/favicon.ico">
 
 </head>
 
 <body>
 
-<header>
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-<div class="container">
+        <!-- Header -->
+        <header id="header">
 
-<a class="logo" href="#">
-Tony Rivera
-</a>
+            <div class="inner">
 
-<nav>
+                <a href="index.html" class="logo">
+                    Tony Rivera
+                </a>
 
-<a href="#">Writing</a>
+                <nav>
 
-<a href="#">Projects</a>
+                    <ul>
 
-<a href="#">About</a>
+                        <li><a href="index.html">Home</a></li>
 
-<a href="#">Contact</a>
+                        <li><a href="writing.html">Writing</a></li>
 
-</nav>
+                        <li><a href="projects.html">Projects</a></li>
 
-</div>
+                        <li><a href="about.html">About</a></li>
 
-</header>
+                        <li><a href="contact.html">Contact</a></li>
 
-<main>
+                    </ul>
 
-<section class="hero">
+                </nav>
 
-<div class="container hero-inner">
+            </div>
 
-<p class="eyebrow">
-Writer · Screenwriter · Filmmaker
-</p>
+        </header>
 
-<h1>
-Stories built for the page and the screen.
-</h1>
+        <!-- Hero -->
 
-<p class="lead">
+        <section id="hero">
 
-I write cinematic fiction, screenplays, and long-form
-worldbuilding. This website is a permanent archive of my
-published work, ongoing projects, and creative practice.
+            <div class="inner">
 
-</p>
+                <span class="subtitle">
+                    Writer • Screenwriter • Filmmaker
+                </span>
 
-<div class="cta">
+                <h1>
+                    Stories built for the page and the screen.
+                </h1>
 
-<a href="#">
-Read Writing
-</a>
+                <p>
 
-<a href="#">
-Explore Projects
-</a>
+                    Welcome to my official portfolio and writing archive.
 
-</div>
+                    Here you'll find original fiction, screenplays,
+                    essays, and ongoing creative projects exploring
+                    fantasy, science fiction, and cinematic storytelling.
 
-</div>
+                </p>
 
-</section>
+                <ul class="actions">
 
-<section>
+                    <li>
+                        <a href="writing.html">
+                            Read My Writing
+                        </a>
+                    </li>
 
-<div class="container grid">
+                    <li>
+                        <a href="projects.html">
+                            View Projects
+                        </a>
+                    </li>
 
-<div class="label">
+                </ul>
 
-Current Focus
+            </div>
 
-</div>
+        </section>
 
-<div class="content">
+        <!-- Featured -->
 
-<h2>Beneath the Moonlight</h2>
+        <section id="featured">
 
-<p>
+            <div class="inner">
 
-An urban fantasy series exploring mythology, memory,
-and the hidden supernatural world beneath modern Manila.
-Currently in active development.
+                <header>
 
-</p>
+                    <h2>Featured Project</h2>
 
-</div>
+                </header>
 
-</div>
+                <article>
 
-</section>
+                    <span class="category">
+                        Urban Fantasy
+                    </span>
 
-<section>
+                    <h3>Beneath the Moonlight</h3>
 
-<div class="container grid">
+                    <p>
 
-<div class="label">
+                        An urban fantasy series following a professor
+                        who secretly protects the hidden magical world
+                        beneath modern Manila.
 
-Selected Work
+                    </p>
 
-</div>
+                    <a href="projects/beneath-the-moonlight.html">
 
-<div class="content">
+                        Learn More
 
-<h2>Writing Archive</h2>
+                    </a>
 
-<p>
+                </article>
 
-Screenplays, short fiction, essays, production notes,
-and development journals documenting the evolution of
-each project.
+            </div>
 
-</p>
+        </section>
 
-</div>
+        <!-- Latest Writing -->
 
-</div>
+        <section id="latest">
 
-</section>
+            <div class="inner">
 
-</main>
+                <header>
 
-<footer>
+                    <h2>Latest Writing</h2>
 
-<div class="container">
+                </header>
 
-© 2026 Tony Rivera
+                <div class="posts">
 
-</div>
+                    <article>
 
-</footer>
+                        <time datetime="2026-07-14">
+                            July 14, 2026
+                        </time>
+
+                        <h3>
+                            SIGMA AXIOM
+                        </h3>
+
+                        <p>
+
+                            Science fiction screenplay.
+
+                        </p>
+
+                    </article>
+
+                    <article>
+
+                        <time datetime="2026-06-20">
+                            June 20, 2026
+                        </time>
+
+                        <h3>
+                            Phantom Sinners
+                        </h3>
+
+                        <p>
+
+                            Dark fantasy novel.
+
+                        </p>
+
+                    </article>
+
+                    <article>
+
+                        <time datetime="2026-05-01">
+                            May 1, 2026
+                        </time>
+
+                        <h3>
+                            Seeds of Grace
+                        </h3>
+
+                        <p>
+
+                            Published novel.
+
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- About Preview -->
+
+        <section id="about-preview">
+
+            <div class="inner">
+
+                <header>
+
+                    <h2>About</h2>
+
+                </header>
+
+                <p>
+
+                    I'm a Digital Film student specializing in writing,
+                    directing, and cinematic storytelling. My work
+                    explores mythology, speculative fiction, and
+                    character-driven narratives inspired by Filipino
+                    culture.
+
+                </p>
+
+                <a href="about.html">
+
+                    Read More
+
+                </a>
+
+            </div>
+
+        </section>
+
+        <!-- Footer -->
+
+        <footer id="footer">
+
+            <div class="inner">
+
+                <section>
+
+                    <h3>Contact</h3>
+
+                    <p>
+
+                        Email:
+                        <a href="mailto:your@email.com">
+                            your@email.com
+                        </a>
+
+                    </p>
+
+                </section>
+
+                <section>
+
+                    <h3>Elsewhere</h3>
+
+                    <ul>
+
+                        <li><a href="#">GitHub</a></li>
+
+                        <li><a href="#">LinkedIn</a></li>
+
+                    </ul>
+
+                </section>
+
+            </div>
+
+            <div id="copyright">
+
+                <p>
+
+                    © 2026 Tony Rivera.
+                    All Rights Reserved.
+
+                </p>
+
+            </div>
+
+        </footer>
+
+    </div>
 
 </body>
+
 </html>
