@@ -1,232 +1,473 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Tony Rivera | Writer</title>
+<title>Tony Rivera</title>
 
-    <meta name="description"
-        content="Official portfolio and archive of writer Tony Rivera. Screenplays, fiction, essays, and creative projects.">
+<style>
 
-    <meta name="author" content="Tony Rivera">
+:root{
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    --bg:#fafafa;
+    --surface:#ffffff;
+    --text:#171717;
+    --muted:#6e6e73;
+    --border:#e5e5e5;
+    --accent:#111111;
 
-    <!-- Replace with your preferred font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+    --content:1180px;
 
-    <link rel="stylesheet" href="css/style.css">
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:var(--bg);
+    color:var(--text);
+
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+
+}
+
+a{
+
+    color:inherit;
+    text-decoration:none;
+
+}
+
+.container{
+
+    width:min(92%,var(--content));
+    margin:auto;
+
+}
+
+/* ----------------------------- */
+
+header{
+
+    position:fixed;
+    inset:0 0 auto 0;
+
+    height:72px;
+
+    background:rgba(250,250,250,.92);
+
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid var(--border);
+
+    z-index:100;
+
+}
+
+header .container{
+
+    height:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+}
+
+.logo{
+
+    font-weight:600;
+
+    letter-spacing:.12em;
+
+    text-transform:uppercase;
+
+    font-size:.9rem;
+
+}
+
+nav{
+
+    display:flex;
+    gap:2rem;
+
+}
+
+nav a{
+
+    color:var(--muted);
+
+    transition:.25s;
+
+}
+
+nav a:hover{
+
+    color:var(--text);
+
+}
+
+/* ----------------------------- */
+
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+
+    align-items:center;
+
+}
+
+.hero-inner{
+
+    max-width:760px;
+
+}
+
+.eyebrow{
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.22em;
+
+    font-size:.75rem;
+
+    margin-bottom:2rem;
+
+}
+
+h1{
+
+    font-size:clamp(3rem,8vw,6.5rem);
+
+    line-height:.95;
+
+    font-weight:650;
+
+    letter-spacing:-.05em;
+
+    margin-bottom:2rem;
+
+}
+
+.lead{
+
+    font-size:1.35rem;
+
+    color:var(--muted);
+
+    max-width:42rem;
+
+}
+
+.cta{
+
+    display:flex;
+
+    gap:2.5rem;
+
+    margin-top:4rem;
+
+}
+
+.cta a{
+
+    font-weight:600;
+
+    position:relative;
+
+}
+
+.cta a::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+    bottom:-6px;
+
+    width:100%;
+
+    height:1px;
+
+    background:#111;
+
+    transform:scaleX(0);
+
+    transform-origin:left;
+
+    transition:.3s;
+
+}
+
+.cta a:hover::after{
+
+    transform:scaleX(1);
+
+}
+
+/* ----------------------------- */
+
+section{
+
+    padding:7rem 0;
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(12,1fr);
+
+    gap:3rem;
+
+}
+
+.label{
+
+    grid-column:span 3;
+
+    color:var(--muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.16em;
+
+    font-size:.8rem;
+
+}
+
+.content{
+
+    grid-column:span 9;
+
+}
+
+.content h2{
+
+    font-size:2.3rem;
+
+    margin-bottom:1rem;
+
+    font-weight:650;
+
+    letter-spacing:-.03em;
+
+}
+
+.content p{
+
+    max-width:42rem;
+
+    color:var(--muted);
+
+}
+
+/* ----------------------------- */
+
+footer{
+
+    border-top:1px solid var(--border);
+
+    padding:2rem 0;
+
+    color:var(--muted);
+
+    font-size:.9rem;
+
+}
+
+@media(max-width:850px){
+
+.grid{
+
+    grid-template-columns:1fr;
+
+}
+
+.label,
+.content{
+
+    grid-column:auto;
+
+}
+
+nav{
+
+    gap:1.25rem;
+
+    font-size:.9rem;
+
+}
+
+.hero{
+
+    padding-top:4rem;
+
+}
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <header class="site-header">
+<header>
 
-        <div class="container">
+<div class="container">
 
-            <a href="index.html" class="logo">
-                Tony Rivera
-            </a>
+<a class="logo" href="#">
+Tony Rivera
+</a>
 
-            <nav class="main-nav">
+<nav>
 
-                <ul>
+<a href="#">Writing</a>
 
-                    <li><a class="active" href="index.html">Home</a></li>
+<a href="#">Projects</a>
 
-                    <li><a href="writings.html">Writing</a></li>
+<a href="#">About</a>
 
-                    <li><a href="projects.html">Projects</a></li>
+<a href="#">Contact</a>
 
-                    <li><a href="about.html">About</a></li>
+</nav>
 
-                    <li><a href="contact.html">Contact</a></li>
+</div>
 
-                </ul>
+</header>
 
-            </nav>
+<main>
 
-        </div>
+<section class="hero">
 
-    </header>
+<div class="container hero-inner">
 
-    <main>
+<p class="eyebrow">
+Writer · Screenwriter · Filmmaker
+</p>
 
-        <!-- HERO -->
+<h1>
+Stories built for the page and the screen.
+</h1>
 
-        <section class="hero">
+<p class="lead">
 
-            <div class="container hero-grid">
+I write cinematic fiction, screenplays, and long-form
+worldbuilding. This website is a permanent archive of my
+published work, ongoing projects, and creative practice.
 
-                <div class="hero-content">
+</p>
 
-                    <p class="eyebrow">
-                        Writer • Screenwriter • Storyteller
-                    </p>
+<div class="cta">
 
-                    <h1>
-                        Stories built with cinematic precision.
-                    </h1>
+<a href="#">
+Read Writing
+</a>
 
-                    <p class="hero-description">
+<a href="#">
+Explore Projects
+</a>
 
-                        Welcome to my digital archive.
+</div>
 
-                        Here you'll find original screenplays, fiction,
-                        essays, and long-form creative projects exploring
-                        fantasy, science fiction, and modern mythology.
+</div>
 
-                    </p>
+</section>
 
-                    <div class="hero-buttons">
+<section>
 
-                        <a class="button primary" href="writings.html">
-                            Read My Writing
-                        </a>
+<div class="container grid">
 
-                        <a class="button secondary" href="projects.html">
-                            View Projects
-                        </a>
+<div class="label">
 
-                    </div>
+Current Focus
 
-                </div>
+</div>
 
-                <div class="hero-image">
+<div class="content">
 
-                    <!-- Portrait or artwork goes here -->
+<h2>Beneath the Moonlight</h2>
 
-                </div>
+<p>
 
-            </div>
+An urban fantasy series exploring mythology, memory,
+and the hidden supernatural world beneath modern Manila.
+Currently in active development.
 
-        </section>
+</p>
 
-        <!-- FEATURED -->
+</div>
 
-        <section class="featured">
+</div>
 
-            <div class="container">
+</section>
 
-                <div class="section-heading">
+<section>
 
-                    <p>Featured Project</p>
+<div class="container grid">
 
-                    <h2>Beneath the Moonlight</h2>
+<div class="label">
 
-                </div>
+Selected Work
 
-                <article class="project-card">
+</div>
 
-                    <div class="project-info">
+<div class="content">
 
-                        <p class="tag">
-                            Urban Fantasy
-                        </p>
+<h2>Writing Archive</h2>
 
-                        <p>
+<p>
 
-                            A professor secretly wages war against
-                            supernatural creatures hiding beneath
-                            modern Manila while confronting a forgotten
-                            magical history and the consequences of a
-                            decades-old conflict.
+Screenplays, short fiction, essays, production notes,
+and development journals documenting the evolution of
+each project.
 
-                        </p>
+</p>
 
-                        <a href="projects.html">
-                            Explore the project →
-                        </a>
+</div>
 
-                    </div>
+</div>
 
-                </article>
+</section>
 
-            </div>
+</main>
 
-        </section>
+<footer>
 
-        <!-- RECENT WRITING -->
+<div class="container">
 
-        <section class="recent">
+© 2026 Tony Rivera
 
-            <div class="container">
+</div>
 
-                <div class="section-heading">
-
-                    <p>Latest Updates</p>
-
-                    <h2>Recent Writing</h2>
-
-                </div>
-
-                <div class="cards">
-
-                    <article class="card">
-
-                        <h3>Coming Soon</h3>
-
-                        <p>
-
-                            New stories and screenplay excerpts will be
-                            published here.
-
-                        </p>
-
-                    </article>
-
-                    <article class="card">
-
-                        <h3>Development Log</h3>
-
-                        <p>
-
-                            Follow the progress of ongoing creative
-                            projects and behind-the-scenes writing notes.
-
-                        </p>
-
-                    </article>
-
-                    <article class="card">
-
-                        <h3>Archive</h3>
-
-                        <p>
-
-                            Explore older work, experiments, and completed
-                            projects.
-
-                        </p>
-
-                    </article>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <footer class="site-footer">
-
-        <div class="container">
-
-            <p>
-                © 2026 Tony Rivera. All rights reserved.
-            </p>
-
-        </div>
-
-    </footer>
-
-    <script src="js/script.js"></script>
+</footer>
 
 </body>
-
 </html>
