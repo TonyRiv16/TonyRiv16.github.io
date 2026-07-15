@@ -1108,16 +1108,6 @@ body.is-loaded .stagger-fade {
     }
 }
 
-@media (max-width: 768px) {
-    .hero {
-        padding-top: var(--spacing-8); /* small padding on mobile only */
-    }
-    
-    .hero-text-column {
-        padding-top: 0;
-    }
-}
-
 @media (max-width: 480px) {
     .hero h1 {
         font-size: clamp(2.5rem, 8vw, 3.5rem);
